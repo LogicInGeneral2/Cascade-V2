@@ -22,7 +22,6 @@ const ProfilePage: React.FC = () => {
       .get("/users/details/")
       .then((res) => {
         setUser(res.data);
-        console.log(res.data);
       })
       .catch((err) => alert(err));
   };
@@ -35,7 +34,6 @@ const ProfilePage: React.FC = () => {
       .then((res) => res.data)
       .then((data) => {
         setClasses(data);
-        console.log(data);
       })
       .catch((err) => alert(err));
   };

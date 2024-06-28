@@ -119,7 +119,6 @@ export default function NavigationBar() {
       .get("/users/details/")
       .then((res) => {
         setUser(res.data);
-        console.log(res.data);
       })
       .catch((err) => alert(err));
   };

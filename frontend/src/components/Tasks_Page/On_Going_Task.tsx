@@ -107,7 +107,6 @@ const On_Going_Task: React.FC<TaskProps> = ({ tasks, status }) => {
       .get("/users/details/")
       .then((res) => {
         setUser(res.data);
-        console.log(res.data);
       })
       .catch((err) => alert(err));
   };
