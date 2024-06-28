@@ -12,6 +12,12 @@ class userDetails(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
+    def update(self, request, *args, **kwargs):
+        if "avatar" in request.FILES:
+            request.user.avatar = request.FILES["avatar"]
+            request.user.save()
+        return super().update(request, *args, **kwargs)
+
 
 class classesList(generics.ListAPIView):
     serializer_class = ClassesSerializer

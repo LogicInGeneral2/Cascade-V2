@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import CustomUser, Classes
 
@@ -16,7 +15,7 @@ class DetailsSerializer(serializers.ModelSerializer):
             "last_name",
             "avatar",
         ]
-        extra_kwargs = {"password": {"read_only": True}}
+        extra_kwargs = {"password": {"read_only": True}, "avatar": {"required": False}}
 
 
 class ClassesSerializer(serializers.ModelSerializer):

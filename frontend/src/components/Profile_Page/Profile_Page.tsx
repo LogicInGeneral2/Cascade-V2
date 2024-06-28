@@ -15,6 +15,7 @@ const ProfilePage: React.FC = () => {
     first_name: "",
     last_name: "",
     avatar: "",
+    id: 0,
   });
 
   const getUser = () => {
@@ -27,7 +28,7 @@ const ProfilePage: React.FC = () => {
   };
 
   const [classes, setClasses] = useState([]);
-  
+
   const getClasses = () => {
     api
       .get("/users/classes/")

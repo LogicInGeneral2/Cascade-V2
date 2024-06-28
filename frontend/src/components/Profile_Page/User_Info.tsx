@@ -1,44 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Grid,
-  IconButton,
   Box,
   Divider,
   Stack,
   Typography,
   CardContent,
   Avatar,
+  styled,
+  Button,
 } from "@mui/material";
 import {
   SchoolRounded,
   EmailRounded,
   BadgeRounded,
   AutoStoriesRounded,
+  AddAPhoto,
 } from "@mui/icons-material";
+import { Student } from "../../models/Tasks_model";
+import api from "../../api";
 
-type UserInfoProps = {
-  user: {
-    status: string;
-    username: string;
-    email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  };
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
+
+const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (file) {
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      await api.patch("/users/details/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      console.error("Failed to upload avatar:", error);
+    }
+  }
 };
 
-const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
-  const [openModal, setOpenModal] = useState<{ [key: string]: boolean }>({
-    email: false,
-    password: false,
-    username: false,
-    avatar: false,
-  });
+type Props = {
+  user: Student;
+};
 
-  const handleOpen = (data: string) =>
-    setOpenModal({ ...openModal, [data]: true });
-
+const UserInfo: React.FC<Props> = ({ user }) => {
   return (
     <Grid container className="content">
       <Grid item xs={2} className="sideInfo">
@@ -67,6 +83,16 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
           sx={{ my: 5, width: "100px", margin: "auto", height: "100px" }}
         />
 
+        <Button
+          component="label"
+          role={undefined}
+          tabIndex={-1}
+          startIcon={<AddAPhoto />}
+          sx={{ mb: 2, color: "#033f63" }}
+        >
+          <VisuallyHiddenInput type="file" onChange={handleFileChange} />
+        </Button>
+
         <Box sx={{ my: 2 }}>
           {user.first_name} <br /> {user.last_name} <br />
         </Box>
@@ -84,9 +110,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
               <EmailRounded sx={{ fontSize: "1.25vw", paddingRight: "5px" }} />
               <Typography sx={{ width: "12%" }}>Email</Typography>
               <Typography sx={{ width: "100%" }}>{user.email}</Typography>
-              <div style={{ marginLeft: "auto" }}>
-                <IconButton onClick={() => handleOpen("email")}></IconButton>
-              </div>
             </Stack>
 
             <Divider sx={{ mt: 2, mb: 2 }} />
@@ -102,9 +125,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
               <BadgeRounded sx={{ fontSize: "1.25vw", paddingRight: "5px" }} />
               <Typography sx={{ width: "12%" }}>Username</Typography>
               <Typography sx={{ width: "100%" }}>{user.username}</Typography>
-              <div style={{ marginLeft: "auto" }}>
-                <IconButton onClick={() => handleOpen("username")}></IconButton>
-              </div>
             </Stack>
 
             <Divider sx={{ mt: 2, mb: 2 }} />
