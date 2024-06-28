@@ -1,0 +1,72 @@
+.GradingPending {
+    background-color: #e8ecec;
+    height: 100vh;
+    overflow-y: auto;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.GradingHeader {
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+    background-color: #7c9885;
+    border-top-left-radius: 15px;
+}
+
+.GradingLists {
+    color: #033f63;
+    background-color: #e8ecec;
+    text-align: left;
+    
+}
+
+.GradingMain {
+    border: 2px solid #033f63;
+
+}
+
+.GradingTitle {
+    color: #033f63;
+    background-color: #e8ecec;
+    text-align: left;
+    padding: 10px;
+
+}
+
+.GradingInput {
+    color: #033f63;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 25px;
+    
+}
+
+.GradedLists {
+    color: #033f63;
+    background-color: #e8ecec;
+    text-align: left;
+    border-top-right-radius: 15px;
+}
+
+.GradedHeader {
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+    background-color: #033f63;
+    border-top-right-radius: 15px;
+}
+
+.Graded {
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #033e6313;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.SubmissionAnswer {
+    color: #033f63;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 25px;
+}

@@ -1,0 +1,240 @@
+ContentMain.js:5 [ContentMain]
+ContentMain.js:5 [ContentService] document.readyState: loading
+ContentMain.js:5 [ContentService.SetContentInitData] target: { TabId: 875616847, FrameId: 0}
+react-dom.development.js:86  Warning: p: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at p (http://localhost:5173/node_modules/.vite/deps/react-open-weather.js?v=90280396:1380:23)
+    at Forecast (http://localhost:5173/src/components/Home_Page/Forecast.tsx:21:45)
+    at div
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at Home (http://localhost:5173/src/components/Home_Page/Home_page.tsx?t=1718533923964:34:29)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at NavigationBar (http://localhost:5173/src/components/Navigation.tsx?t=1718555531456:114:17)
+    at ProtectedRoute (http://localhost:5173/src/components/ProtectedRoute.jsx:23:27)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:3653:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4088:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4031:15)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4774:5)
+    at App (http://localhost:5173/src/App.tsx?t=1718555531456:43:32)
+printWarning @ react-dom.development.js:86
+Show 1 more frame
+Show less
+Home_page.tsx:41 Object
+Home_page.tsx:26 Array(3)
+Navigation.tsx:149 Object
+Home_page.tsx:41 Object
+Navigation.tsx:149 Object
+Home_page.tsx:26 Array(3)
+react-dom.development.js:86  Warning: f: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at f (http://localhost:5173/node_modules/.vite/deps/react-open-weather.js?v=90280396:1449:23)
+    at div
+    at div
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/react-open-weather.js?v=90280396:638:40
+    at p (http://localhost:5173/node_modules/.vite/deps/react-open-weather.js?v=90280396:1380:23)
+    at Forecast (http://localhost:5173/src/components/Home_Page/Forecast.tsx:21:45)
+    at div
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at Home (http://localhost:5173/src/components/Home_Page/Home_page.tsx?t=1718533923964:34:29)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at NavigationBar (http://localhost:5173/src/components/Navigation.tsx?t=1718555531456:114:17)
+    at ProtectedRoute (http://localhost:5173/src/components/ProtectedRoute.jsx:23:27)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:3653:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4088:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4031:15)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4774:5)
+    at App (http://localhost:5173/src/App.tsx?t=1718555531456:43:32)
+printWarning @ react-dom.development.js:86
+Show 1 more frame
+Show less
+react-jsx-dev-runtime.development.js:87  Warning: Failed prop type: Invalid prop `children` supplied to `ForwardRef(Modal2)`. Expected an element that can hold a ref. Did you accidentally use a plain function component for an element instead? For more information see https://mui.com/r/caveat-with-refs-guide
+    at Modal2 (http://localhost:5173/node_modules/.vite/deps/chunk-R7YG3UO3.js?v=90280396:1166:17)
+    at Tasks_Page (http://localhost:5173/src/components/Tasks_Page/Task_Page.tsx?t=1718555531456:42:27)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at NavigationBar (http://localhost:5173/src/components/Navigation.tsx?t=1718555531456:114:17)
+    at ProtectedRoute (http://localhost:5173/src/components/ProtectedRoute.jsx:23:27)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:3653:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4088:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4031:15)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4774:5)
+    at App (http://localhost:5173/src/App.tsx?t=1718555531456:43:32)
+printWarning @ react-jsx-dev-runtime.development.js:87
+Show 1 more frame
+Show less
+Task_Page.tsx:50 Object
+Task_Page.tsx:62 Array(3)
+Task_Page.tsx:73 Array(1)
+Task_Page.tsx:84 Array(0)
+Task_Page.tsx:208 SUBMISSION ID IS: undefined
+hook.js:296 SUBMISSION ID IS: undefined
+react-dom.development.js:86  Warning: validateDOMNesting(...): <p> cannot appear as a descendant of <p>.
+    at p
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Typography2 (http://localhost:5173/node_modules/.vite/deps/chunk-FOD3PPT4.js?v=90280396:134:22)
+    at p
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Typography2 (http://localhost:5173/node_modules/.vite/deps/chunk-FOD3PPT4.js?v=90280396:134:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at ButtonBase2 (http://localhost:5173/node_modules/.vite/deps/chunk-VC6AALHV.js?v=90280396:541:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at AccordionSummary2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:1728:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-BW2M4VTQ.js?v=90280396:115:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Accordion2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:1264:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at On_Going_Task (http://localhost:5173/src/components/Tasks_Page/On_Going_Task.tsx?t=1718555531456:86:26)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:2767:24)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at Tasks_Page (http://localhost:5173/src/components/Tasks_Page/Task_Page.tsx?t=1718555531456:42:27)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at NavigationBar (http://localhost:5173/src/components/Navigation.tsx?t=1718555531456:114:17)
+    at ProtectedRoute (http://localhost:5173/src/components/ProtectedRoute.jsx:23:27)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:3653:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4088:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4031:15)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4774:5)
+    at App (http://localhost:5173/src/App.tsx?t=1718555531456:43:32)
+printWarning @ react-dom.development.js:86
+Show 1 more frame
+Show less
+Task_Page.tsx:50 Object
+Task_Page.tsx:73 Array(1)
+Task_Page.tsx:84 Array(0)
+Task_Page.tsx:62 Array(3)
+Task_Page.tsx:208 SUBMISSION ID IS: undefined
+hook.js:296 SUBMISSION ID IS: undefined
+react-dom.development.js:86  Warning: A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
+    at input
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at span
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at ButtonBase2 (http://localhost:5173/node_modules/.vite/deps/chunk-VC6AALHV.js?v=90280396:541:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at SwitchBase2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:6299:5)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at span
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Switch2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:17549:17)
+    at p
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Typography2 (http://localhost:5173/node_modules/.vite/deps/chunk-FOD3PPT4.js?v=90280396:134:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at ButtonBase2 (http://localhost:5173/node_modules/.vite/deps/chunk-VC6AALHV.js?v=90280396:541:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at AccordionSummary2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:1728:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-BW2M4VTQ.js?v=90280396:115:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Accordion2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:1264:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at On_Going_Task (http://localhost:5173/src/components/Tasks_Page/On_Going_Task.tsx?t=1718555531456:86:26)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:2767:24)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Grid2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=90280396:8124:22)
+    at div
+    at Tasks_Page (http://localhost:5173/src/components/Tasks_Page/Task_Page.tsx?t=1718555531456:42:27)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-LFOMJ7ZX.js?v=90280396:1493:49
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-UN4R55HR.js?v=90280396:643:19)
+    at NavigationBar (http://localhost:5173/src/components/Navigation.tsx?t=1718555531456:114:17)
+    at ProtectedRoute (http://localhost:5173/src/components/ProtectedRoute.jsx:23:27)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:3653:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4088:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4031:15)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=90280396:4774:5)
+    at App (http://localhost:5173/src/App.tsx?t=1718555531456:43:32)
+printWarning @ react-dom.development.js:86
+Show 1 more frame
+Show less
+useControlled.js:20  MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.
+Elements should not switch from uncontrolled to controlled (or vice versa).
+Decide between using a controlled or uncontrolled SwitchBase element for the lifetime of the component.
+The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
+More info: https://fb.me/react-controlled-components
+(anonymous) @ useControlled.js:20
+Show 1 more frame
+Show less
+useControlled.js:20  MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.
+Elements should not switch from uncontrolled to controlled (or vice versa).
+Decide between using a controlled or uncontrolled SwitchBase element for the lifetime of the component.
+The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
+More info: https://fb.me/react-controlled-components
+(anonymous) @ useControlled.js:20
+Show 1 more frame
+Show less
+useControlled.js:20  MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.
+Elements should not switch from uncontrolled to controlled (or vice versa).
+Decide between using a controlled or uncontrolled SwitchBase element for the lifetime of the component.
+The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
+More info: https://fb.me/react-controlled-components
+(anonymous) @ useControlled.js:20
+Show 1 more frame
+Show less
+127.0.0.1:8000/api/submissions/:1 
+        
+        
+        Failed to load resource: the server responded with a status of 400 (Bad Request)
+On_Going_Task.tsx:98  Error submitting: AxiosErrorcode: "ERR_BAD_REQUEST"config: adapter: ƒ xhrAdapter(config)baseURL: "http://127.0.0.1:8000"data: "{\"task\":4,\"file_upload\":null,\"file_name\":null}"env: {FormData: null}headers: {Accept: 'application/json, text/plain, */*', Content-Type: 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2…I6Mn0.5rJkl3f9jUxW1qBKM0o3f1eOHuPJiP-uW0YKLmPPMnM'}maxBodyLength: -1maxContentLength: -1method: "post"timeout: 0transformRequest: [ƒ]transformResponse: [ƒ]transitional: {silentJSONParsing: true, forcedJSONParsing: true, clarifyTimeoutError: false}url: "/api/submissions/"validateStatus: ƒ validateStatus(status)xsrfCookieName: "XSRF-TOKEN"xsrfHeaderName: "X-XSRF-TOKEN"[[Prototype]]: Objectmessage: "Request failed with status code 400"name: "AxiosError"request: XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}response: config: {transitional: {…}, transformRequest: Array(1), transformResponse: Array(1), timeout: 0, adapter: ƒ, …}data: student: Array(1)0: "This field is required."length: 1[[Prototype]]: Array(0)[[Prototype]]: Objectheaders: {content-length: '39', content-type: 'application/json'}request: XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}status: 400statusText: "Bad Request"[[Prototype]]: Object[[Prototype]]: Error
+handleSubmit @ On_Going_Task.tsx:98
+cascade:1  [Deprecation] The 'textprediction' attribute will be removed in the future. Use the 'writingsuggestions' attribute instead. See https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes for more information.
