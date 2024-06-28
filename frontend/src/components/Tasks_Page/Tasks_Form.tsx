@@ -6,6 +6,7 @@ import {
   Button,
   Stack,
   IconButton,
+  styled,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -15,9 +16,23 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Dayjs } from "dayjs";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 const InsertTasks = ({ classId }: { classId: string }) => {
   const [name, setTaskName] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
   const [description, setTaskDescription] = useState<string>("");
   const [start_date, setStartDate] = useState<Dayjs | null>(null);
   const [due_date, setDueDate] = useState<Dayjs | null>(null);
@@ -26,24 +41,56 @@ const InsertTasks = ({ classId }: { classId: string }) => {
     { title: string; description: string }[]
   >([{ title: "", description: "" }]);
 
-  const createTask = (e: FormEvent) => {
+  const createTask = async (e: FormEvent) => {
     e.preventDefault();
-    api
-      .post("/api/tasks/", {
-        name,
-        description,
-        start_date: start_date ? start_date.format("YYYY-MM-DD") : null,
-        due_date: due_date ? due_date.format("YYYY-MM-DD") : null,
-        submission_required,
-        class_id: classId,
-        subtasks,
-      })
-      .then((data) => {
-        console.log("Response data:", data);
-        alert("Task created successfully!");
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
+
+    try {
+      const subtaskPromises = subtasks.map((subtask) =>
+        api.post("/api/subtasks/", subtask)
+      );
+      const subtaskResponses = await Promise.all(subtaskPromises);
+      const subtaskIds = subtaskResponses.map((res) => res.data.id);
+
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      if (start_date)
+        formData.append("start_date", start_date.format("YYYY-MM-DD"));
+      if (due_date) formData.append("due_date", due_date.format("YYYY-MM-DD"));
+      formData.append(
+        "submission_required",
+        JSON.stringify(submission_required)
+      );
+      formData.append("class_id", classId);
+      if (file) formData.append("file_upload", file);
+
+      subtaskIds.forEach((id) => formData.append("subtasks", id.toString()));
+
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      const { data } = await api.post("/api/tasks/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Response data:", data);
+      alert("Task created successfully!");
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setFile(file);
+    }
   };
 
   const handleSubtaskChange = (index: number, field: string, value: string) => {
@@ -91,7 +138,6 @@ const InsertTasks = ({ classId }: { classId: string }) => {
             id="task_description"
             required
             label="Task Description"
-            placeholder="Placeholder"
             multiline
             sx={{ mb: 2 }}
             value={description}
@@ -116,6 +162,18 @@ const InsertTasks = ({ classId }: { classId: string }) => {
             />
           </LocalizationProvider>
         </Stack>
+
+        <Button
+          component="label"
+          role={undefined}
+          tabIndex={-1}
+          startIcon={<FileUploadIcon />}
+          sx={{ mb: 2, color: "#033f63" }}
+          variant="outlined"
+        >
+          Upload File
+          <VisuallyHiddenInput type="file" onChange={handleFileChange} />
+        </Button>
 
         {subtasks.map((subtask, index) => (
           <Box key={index} sx={{ mb: 2, p: 2 }}>

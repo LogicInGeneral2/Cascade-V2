@@ -9,6 +9,7 @@ router.register("files", views.FilesViewSet, basename="files")
 urlpatterns = [
     path("tasks/", views.TaskListCreate.as_view(), name="task-list"),
     path("tasks/delete/<int:pk>/", views.TaskDelete.as_view(), name="task-delete"),
+    path("subtasks/", views.SubTaskListCreate.as_view(), name="subtask-list-create"),
     path("submissions/", views.SubmissionListCreate.as_view(), name="submission-list"),
     path(
         "submissions/delete/<int:pk>/",

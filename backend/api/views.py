@@ -6,6 +6,7 @@ from .serializers import (
     SubmissionSerializer,
     UserSerializer,
     TaskSerializer,
+    SubTaskSerializer,
 )
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import SubTask, Task, graded_submission, submission
@@ -34,7 +35,18 @@ class TaskListCreate(generics.ListCreateAPIView):
             return Task.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save()
+        subtasks_ids = self.request.data.getlist("subtasks")
+        serializer.save(
+            subtasks=subtasks_ids, file_upload=self.request.FILES.get("file_upload")
+        )
+
+
+class SubTaskListCreate(generics.ListCreateAPIView):
+    serializer_class = SubTaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return SubTask.objects.all()
 
 
 class TaskDelete(generics.DestroyAPIView):

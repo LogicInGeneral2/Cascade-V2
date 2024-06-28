@@ -25,7 +25,9 @@ class SubTaskSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    subtasks = SubTaskSerializer(many=True, read_only=False)
+    subtasks = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=SubTask.objects.all(), required=False
+    )
 
     class Meta:
         model = Task
@@ -40,16 +42,13 @@ class TaskSerializer(serializers.ModelSerializer):
             "due_date",
             "subtasks",
             "file_upload",
-            "file_name",
         ]
 
     def create(self, validated_data):
         subtasks_data = validated_data.pop("subtasks", [])
         task = Task.objects.create(**validated_data)
 
-        for subtask_data in subtasks_data:
-            subtask = SubTask.objects.create(**subtask_data)
-            task.subtasks.add(subtask)
+        task.subtasks.set(subtasks_data)
 
         return task
 
@@ -66,6 +65,7 @@ class SubmissionSerializer(serializers.ModelSerializer):
             "file_name",
             "answer",
         ]
+        extra_kwargs = {"file_upload": {"required": False}}
 
 
 class GradedSubmissionSerializer(serializers.ModelSerializer):
