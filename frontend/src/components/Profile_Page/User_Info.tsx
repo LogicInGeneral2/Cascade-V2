@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import {
   Grid,
-  CardMedia,
   IconButton,
   Box,
   Divider,
   Stack,
   Typography,
   CardContent,
-  Modal,
+  Avatar,
 } from "@mui/material";
 import {
-  Edit,
   SchoolRounded,
   EmailRounded,
   BadgeRounded,
   AutoStoriesRounded,
 } from "@mui/icons-material";
-import EditInfo from "./Profile_form";
 
 type UserInfoProps = {
   user: {
@@ -41,8 +38,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
 
   const handleOpen = (data: string) =>
     setOpenModal({ ...openModal, [data]: true });
-  const handleClose = (data: string) =>
-    setOpenModal({ ...openModal, [data]: false });
 
   return (
     <Grid container className="content">
@@ -66,26 +61,13 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
             )}
           </Stack>
         </Box>
-        <CardMedia
-          component="img"
+        <Avatar
           src={user.avatar}
           alt={user.last_name}
-          sx={{ my: 5, width: "100px", margin: "auto" }}
+          sx={{ my: 5, width: "100px", margin: "auto", height: "100px" }}
         />
-        <IconButton
-          sx={{ mt: 1, mb: 1 }}
-          onClick={() => handleOpen("avatar")}
-        ></IconButton>
 
-        <Modal
-          open={openModal.avatar}
-          onClose={() => handleClose("avatar")}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <EditInfo info={user.avatar} data="profile picture" />
-        </Modal>
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ my: 2 }}>
           {user.first_name} <br /> {user.last_name} <br />
         </Box>
       </Grid>
@@ -109,33 +91,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
 
             <Divider sx={{ mt: 2, mb: 2 }} />
 
-            {/*
-            <Stack
-              direction="row"
-              spacing={1}
-              className="mainInfoStatus"
-              divider={<Divider orientation="vertical" flexItem />}
-            >
-              <LockRounded sx={{ fontSize: "1.25vw", paddingRight: "5px" }} />
-              <Typography sx={{ width: "12%" }}>Password</Typography>
-              <Typography sx={{ width: "100%" }}>{user.password}</Typography>
-              <div style={{ marginLeft: "auto" }}>
-                <IconButton onClick={() => handleOpen("password")}>
-                  <Edit />
-                </IconButton>
-
-                <Modal
-                  open={openModal.password}
-                  onClose={() => handleClose("password")}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <EditInfo info={user.password} data="password" />
-                </Modal>
-              </div>
-            </Stack>
-            */}
-
             <Divider sx={{ mt: 2, mb: 2 }} />
 
             <Stack
@@ -148,9 +103,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
               <Typography sx={{ width: "12%" }}>Username</Typography>
               <Typography sx={{ width: "100%" }}>{user.username}</Typography>
               <div style={{ marginLeft: "auto" }}>
-                <IconButton onClick={() => handleOpen("username")}>
-                </IconButton>
-
+                <IconButton onClick={() => handleOpen("username")}></IconButton>
               </div>
             </Stack>
 

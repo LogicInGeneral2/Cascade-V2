@@ -6,13 +6,7 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-
-type classes = {
-  subject: string;
-  avatar: string;
-  code: string;
-  start_date: Date;
-};
+import { classes } from "../../models/Tasks_model";
 
 const ClassList = ({ tasks }: { tasks: classes[] }) => {
   return (
@@ -32,7 +26,7 @@ const ClassList = ({ tasks }: { tasks: classes[] }) => {
                   variant="body2"
                   color="text.primary"
                 ></Typography>
-                {" — " + task.start_date}
+                {"Enrolled on: " + task.start_date}
               </React.Fragment>
             }
           />
