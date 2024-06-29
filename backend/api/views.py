@@ -82,6 +82,24 @@ class FileDownloadView(View):
             raise Http404("File does not exist")
 
 
+class SubmissionDownloadView(View):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        task = submission.objects.get(pk=pk)
+        if task.file_upload:
+            file_path = task.file_upload.path
+            file_name = os.path.basename(file_path)
+            with open(file_path, "rb") as file:
+                response = HttpResponse(
+                    file.read(), content_type="application/octet-stream"
+                )
+                response["Content-Disposition"] = "attachment; filename=" + file_name
+                return response
+        else:
+            raise Http404("File does not exist")
+
+
 class FilesViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer

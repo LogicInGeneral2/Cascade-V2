@@ -27,5 +27,10 @@ urlpatterns = [
         name="graded-submission-delete",
     ),
     path("download/<int:pk>/", views.FileDownloadView.as_view(), name="file-download"),
+    path(
+        "download-submission/<int:pk>/",
+        views.SubmissionDownloadView.as_view(),
+        name="file-download",
+    ),
     path("", include(router.urls)),
 ]

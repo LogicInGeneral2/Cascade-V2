@@ -9,6 +9,7 @@ import {
   ListItemButton,
   ListItemText,
   MenuItem,
+  Modal,
   Pagination,
   Rating,
   Select,
@@ -19,6 +20,7 @@ import {
 } from "@mui/material";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import EventBusyRoundedIcon from "@mui/icons-material/EventBusyRounded";
+import CenterFocusWeakIcon from "@mui/icons-material/CenterFocusWeak";
 import ErrorIcon from "@mui/icons-material/Error";
 import React, { useEffect, useState } from "react";
 import "./grading_page.css";
@@ -32,6 +34,13 @@ import {
   Graded as GradedType,
 } from "../../models/Tasks_model";
 import Graded_List from "./Graded_List";
+import SubmissionDownloadButton from "./download";
+import { Document, Page, pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 function Grading_Page() {
   const [classId, setClassId] = useState<string>("");
@@ -215,6 +224,16 @@ function Grading_Page() {
     student: submission.student,
   }));
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
+
   const renderSubmissionDetails = () => {
     if (!selectedTask) return null;
 
@@ -262,6 +281,75 @@ function Grading_Page() {
             Submitted answer: {getSubmissionAnswer(submission)}
           </Typography>
           <Divider sx={{ my: 2 }} />
+
+          <SubmissionDownloadButton fileId={submission.id} />
+
+          <Box>
+            {submission.file_upload && (
+              <>
+                <Button
+                  onClick={handleOpen}
+                  size="small"
+                  sx={{ mt: 2, mb: 1 }}
+                  variant="outlined"
+                >
+                  <CenterFocusWeakIcon sx={{ mr: 1 }} />
+                  View File
+                </Button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box
+                    sx={{
+                      position: "absolute" as "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      minwidth: 600,
+                      bgcolor: "background.paper",
+                      border: "2px solid #000",
+                      boxShadow: 24,
+                      p: 4,
+                    }}
+                  >
+                    <Document
+                      file={submission.file_upload}
+                      onLoadSuccess={onDocumentLoadSuccess}
+                      renderMode="canvas"
+                    >
+                      <Page
+                        pageNumber={pageNumber}
+                        renderTextLayer={false}
+                        renderAnnotationLayer={false}
+                      />
+                    </Document>
+                    <Typography sx={{ color: "#7c9885" }}>
+                      Page {pageNumber} of {numPages}
+                    </Typography>
+                    <Box
+                      sx={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <Button
+                        disabled={pageNumber <= 1}
+                        onClick={() => setPageNumber(pageNumber - 1)}
+                      >
+                        Previous
+                      </Button>
+                      <Button
+                        disabled={pageNumber >= (numPages || 0)}
+                        onClick={() => setPageNumber(pageNumber + 1)}
+                      >
+                        Next
+                      </Button>
+                    </Box>
+                  </Box>
+                </Modal>
+              </>
+            )}
+          </Box>
         </Box>
         <Divider sx={{ mb: 2, borderColor: "#033f63", borderWidth: 1 }} />
         <form onSubmit={handleFormSubmit}>
@@ -465,6 +553,11 @@ function Grading_Page() {
                       variant="outlined"
                     />
                   </Stack>
+
+                  <Typography sx={{ fontSize: "0.8rem" }}>
+                    {selectedTask.description}
+                  </Typography>
+
                   <Stack
                     direction="row"
                     spacing={1}
