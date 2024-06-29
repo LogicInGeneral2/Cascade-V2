@@ -88,7 +88,13 @@ const InsertTasks = ({ classId }: { classId: string }) => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
+
     if (file) {
+      if (file.type !== "application/pdf") {
+        alert("Please upload a PDF file.");
+        event.target.value = "";
+        return;
+      }
       setFile(file);
     }
   };
@@ -163,6 +169,11 @@ const InsertTasks = ({ classId }: { classId: string }) => {
           </LocalizationProvider>
         </Stack>
 
+        <Typography sx={{ color: "red", fontSize: "0.8rem", mb: 1 }}>
+          {" "}
+          *Files are optional.Only pdf files are allowed
+        </Typography>
+
         <Button
           component="label"
           role={undefined}
@@ -171,9 +182,15 @@ const InsertTasks = ({ classId }: { classId: string }) => {
           sx={{ mb: 2, color: "#033f63" }}
           variant="outlined"
         >
-          Upload File
+          Upload
           <VisuallyHiddenInput type="file" onChange={handleFileChange} />
         </Button>
+
+        {file && (
+          <Typography sx={{ fontSize: "0.6rem", fontStyle: "italic" }}>
+            Uploaded file: {file.name}
+          </Typography>
+        )}
 
         {subtasks.map((subtask, index) => (
           <Box key={index} sx={{ mb: 2, p: 2 }}>

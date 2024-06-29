@@ -25,6 +25,7 @@ export interface Task {
   description: string;
   start_date: Date;
   due_date: Date;
+  file_upload?: string;
   subtasks: SubTask[];
 }
 

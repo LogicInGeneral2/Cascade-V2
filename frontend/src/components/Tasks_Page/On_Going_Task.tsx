@@ -12,16 +12,25 @@ import {
   Typography,
   CircularProgress,
   TextField,
+  Modal,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreRounded";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import EventBusyRoundedIcon from "@mui/icons-material/EventBusyRounded";
+import CenterFocusWeakIcon from "@mui/icons-material/CenterFocusWeak";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { SubTask, Task } from "../../models/Tasks_model";
 import { useEffect, useState } from "react";
 import FileDownloadButton from "./download";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import api from "../../api";
+import { Document, Page, pdfjs } from "react-pdf";
+import React from "react";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 interface TaskProps {
   tasks: Task;
@@ -71,7 +80,7 @@ const Calculate_Progress = (subtasks: SubTask[]): number => {
 };
 
 const On_Going_Task: React.FC<TaskProps> = ({ tasks, status }) => {
-  const { name, start_date, due_date, subtasks } = tasks;
+  const { name, start_date, due_date, subtasks, file_upload } = tasks;
   const [progress, setProgress] = useState<number>(
     Calculate_Progress(subtasks)
   );
@@ -111,8 +120,6 @@ const On_Going_Task: React.FC<TaskProps> = ({ tasks, status }) => {
       .catch((err) => alert(err));
   };
 
-  
-
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this task?")) {
       deleteTask(tasks.task_id);
@@ -133,6 +140,17 @@ const On_Going_Task: React.FC<TaskProps> = ({ tasks, status }) => {
     } catch (error) {
       console.error("Error submitting:", error);
     }
+  };
+
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
   };
 
   return (
@@ -274,6 +292,64 @@ const On_Going_Task: React.FC<TaskProps> = ({ tasks, status }) => {
           >
             Submit
           </Button>
+        </>
+      )}
+
+      {file_upload && (
+        <>
+          <Button onClick={handleOpen} size="small" sx={{ mt: 2, mb: 1 }}>
+            <CenterFocusWeakIcon sx={{ mr: 1 }} />
+            Attachment
+          </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              sx={{
+                position: "absolute" as "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                minwidth: 600,
+                bgcolor: "background.paper",
+                border: "2px solid #000",
+                boxShadow: 24,
+                p: 4,
+              }}
+            >
+              <Document
+                file={file_upload}
+                onLoadSuccess={onDocumentLoadSuccess}
+                renderMode="canvas"
+              >
+                <Page
+                  pageNumber={pageNumber}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
+                />
+              </Document>
+              <Typography sx={{ color: "#7c9885" }}>
+                Page {pageNumber} of {numPages}
+              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Button
+                  disabled={pageNumber <= 1}
+                  onClick={() => setPageNumber(pageNumber - 1)}
+                >
+                  Previous
+                </Button>
+                <Button
+                  disabled={pageNumber >= (numPages || 0)}
+                  onClick={() => setPageNumber(pageNumber + 1)}
+                >
+                  Next
+                </Button>
+              </Box>
+            </Box>
+          </Modal>
         </>
       )}
     </Box>
