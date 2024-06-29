@@ -68,19 +68,18 @@ class FileDownloadView(View):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, pk):
-        subtask = get_object_or_404(SubTask, pk=pk)
-
-        if not subtask.file_upload:
+        task = Task.objects.get(pk=pk)
+        if task.file_upload:
+            file_path = task.file_upload.path
+            file_name = os.path.basename(file_path)
+            with open(file_path, "rb") as file:
+                response = HttpResponse(
+                    file.read(), content_type="application/octet-stream"
+                )
+                response["Content-Disposition"] = "attachment; filename=" + file_name
+                return response
+        else:
             raise Http404("File does not exist")
-
-        file_path = subtask.file_upload.path
-        file_name = os.path.basename(file_path)
-        with open(file_path, "rb") as file:
-            response = HttpResponse(
-                file.read(), content_type="application/octet-stream"
-            )
-            response["Content-Disposition"] = "attachment; filename=" + file_name
-            return response
 
 
 class FilesViewSet(viewsets.ModelViewSet):
@@ -106,7 +105,9 @@ class SubmissionListCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
             user = self.request.user
-            serializer.save(student=user)
+            serializer.save(
+                student=user, file_upload=self.request.FILES.get("file_upload")
+            )
         else:
             print(serializer.errors)
 

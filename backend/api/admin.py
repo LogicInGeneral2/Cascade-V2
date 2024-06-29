@@ -55,7 +55,6 @@ class SubmissionAdmin(admin.ModelAdmin):
         "student",
         "task_id",
         "submission_date",
-        "file_name",
         "answer",
     )
     list_filter = ("submission_date", "task_id", "student")

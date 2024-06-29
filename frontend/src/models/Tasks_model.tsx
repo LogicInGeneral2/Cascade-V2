@@ -27,6 +27,7 @@ export interface Task {
   due_date: Date;
   file_upload?: string;
   subtasks: SubTask[];
+  require_file?: boolean;
 }
 
 export interface Graded {

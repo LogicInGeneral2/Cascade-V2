@@ -7,6 +7,7 @@ import {
   Stack,
   IconButton,
   styled,
+  Checkbox,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -36,7 +37,7 @@ const InsertTasks = ({ classId }: { classId: string }) => {
   const [description, setTaskDescription] = useState<string>("");
   const [start_date, setStartDate] = useState<Dayjs | null>(null);
   const [due_date, setDueDate] = useState<Dayjs | null>(null);
-  const [submission_required] = useState<boolean>(false);
+  const [submission_required, setSubmissionRequired] = useState<boolean>(false);
   const [subtasks, setSubtasks] = useState<
     { title: string; description: string }[]
   >([{ title: "", description: "" }]);
@@ -57,10 +58,7 @@ const InsertTasks = ({ classId }: { classId: string }) => {
       if (start_date)
         formData.append("start_date", start_date.format("YYYY-MM-DD"));
       if (due_date) formData.append("due_date", due_date.format("YYYY-MM-DD"));
-      formData.append(
-        "submission_required",
-        JSON.stringify(submission_required)
-      );
+      formData.append("require_file", JSON.stringify(submission_required));
       formData.append("class_id", classId);
       if (file) formData.append("file_upload", file);
 
@@ -169,28 +167,42 @@ const InsertTasks = ({ classId }: { classId: string }) => {
           </LocalizationProvider>
         </Stack>
 
-        <Typography sx={{ color: "red", fontSize: "0.8rem", mb: 1 }}>
+        <Divider />
+
+        <Typography sx={{ color: "red", fontSize: "0.8rem", mb: 1, mt: 1 }}>
           {" "}
           *Files are optional.Only pdf files are allowed
         </Typography>
 
-        <Button
-          component="label"
-          role={undefined}
-          tabIndex={-1}
-          startIcon={<FileUploadIcon />}
-          sx={{ mb: 2, color: "#033f63" }}
-          variant="outlined"
-        >
-          Upload
-          <VisuallyHiddenInput type="file" onChange={handleFileChange} />
-        </Button>
+        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+          <Button
+            component="label"
+            role={undefined}
+            tabIndex={-1}
+            startIcon={<FileUploadIcon />}
+            sx={{ mb: 2, color: "#033f63" }}
+            variant="outlined"
+          >
+            Upload
+            <VisuallyHiddenInput type="file" onChange={handleFileChange} />
+          </Button>
 
-        {file && (
-          <Typography sx={{ fontSize: "0.6rem", fontStyle: "italic" }}>
-            Uploaded file: {file.name}
-          </Typography>
-        )}
+          {file && (
+            <Typography sx={{ fontSize: "0.8rem", fontStyle: "italic" }}>
+              Uploaded file: {file.name}
+            </Typography>
+          )}
+        </Stack>
+
+        <Divider sx={{ mb: 2 }} />
+
+        <Typography>
+          <Checkbox
+            checked={submission_required}
+            onChange={(event) => setSubmissionRequired(event.target.checked)}
+          />
+          {"Submission file required? "}
+        </Typography>
 
         {subtasks.map((subtask, index) => (
           <Box key={index} sx={{ mb: 2, p: 2 }}>

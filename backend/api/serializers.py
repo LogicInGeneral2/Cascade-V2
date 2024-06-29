@@ -40,6 +40,7 @@ class TaskSerializer(serializers.ModelSerializer):
             "due_date",
             "subtasks",
             "file_upload",
+            "require_file",
         ]
 
     def create(self, validated_data):
@@ -58,7 +59,6 @@ class SubmissionSerializer(serializers.ModelSerializer):
             "task_id",
             "submission_date",
             "file_upload",
-            "file_name",
             "answer",
         ]
         extra_kwargs = {"file_upload": {"required": False}}

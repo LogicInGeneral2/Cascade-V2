@@ -1,10 +1,9 @@
 import React from "react";
-import Button from "@mui/joy/Button";
-import SvgIcon from "@mui/joy/SvgIcon";
+import { Button } from "@mui/material";
 import GetAppIcon from "@mui/icons-material/GetApp";
 
 interface FileDownloadButtonProps {
-  fileId: number;
+  fileId: String;
 }
 
 const FileDownloadButton: React.FC<FileDownloadButtonProps> = ({ fileId }) => {
@@ -24,12 +23,11 @@ const FileDownloadButton: React.FC<FileDownloadButtonProps> = ({ fileId }) => {
       role={undefined}
       tabIndex={-1}
       variant="outlined"
-      color="neutral"
       onClick={handleDownload}
       sx={{ p: 1, minWidth: "unset" }}
-      startDecorator={<SvgIcon component={GetAppIcon} />}
     >
-      Download
+      <GetAppIcon sx={{ mr: 1 }} />
+      Download File
     </Button>
   );
 };

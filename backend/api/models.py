@@ -36,6 +36,7 @@ class Task(models.Model):
     subtasks = models.ManyToManyField(SubTask, related_name="tasks", blank=True)
     file_upload = models.FileField(upload_to="tasks/", null=True, blank=True)
     file_name = models.CharField(max_length=255, blank=True, null=True)
+    require_file = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -50,7 +51,6 @@ class submission(models.Model):
     task_id = models.ForeignKey(Task, on_delete=models.CASCADE)
     submission_date = models.DateField(auto_now_add=True)
     file_upload = models.FileField(upload_to="submissions/", null=True, blank=True)
-    file_name = models.CharField(max_length=255, blank=True, null=True)
     answer = models.CharField(max_length=1000, blank=True, null=True)
 
     def __str__(self):
