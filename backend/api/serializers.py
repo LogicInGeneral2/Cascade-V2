@@ -25,9 +25,7 @@ class SubTaskSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    subtasks = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=SubTask.objects.all(), required=False
-    )
+    subtasks = SubTaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Task
@@ -47,9 +45,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         subtasks_data = validated_data.pop("subtasks", [])
         task = Task.objects.create(**validated_data)
-
         task.subtasks.set(subtasks_data)
-
         return task
 
 

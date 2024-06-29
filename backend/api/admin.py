@@ -8,9 +8,9 @@ from .models import Task, SubTask, submission, graded_submission
 # admin.site.register(graded_submission)
 
 
-# class SubTaskInline(admin.TabularInline):
-#    model = Task.subtasks.through
-#    extra = 1
+class SubTaskInline(admin.TabularInline):
+    model = Task.subtasks.through
+    extra = 1
 
 
 class TaskAdmin(admin.ModelAdmin):
@@ -25,7 +25,7 @@ class TaskAdmin(admin.ModelAdmin):
     )
     list_filter = ("created_date", "start_date", "due_date", "class_id")
     search_fields = ("name", "description")
-    # inlines = [SubTaskInline]
+    inlines = [SubTaskInline]
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
