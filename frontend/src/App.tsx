@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound_page/NotFound";
 import Home from "./components/Home_Page/Home_page";
 import Tasks_Page from "./components/Tasks_Page/Task_Page";
 import Grading_Page from "./components/Grading_Page/Grading_Page";
+import Marking from "./components/Grading_Page/marking";
 
 function Logout() {
   localStorage.clear();
@@ -98,6 +99,16 @@ function App() {
             <ProtectedRoute>
               <MainLayout>
                 <Grading_Page />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/marking"
+          element={
+            <ProtectedRoute>
+              <MainLayout>
+                <Marking />
               </MainLayout>
             </ProtectedRoute>
           }

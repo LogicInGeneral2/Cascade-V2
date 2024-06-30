@@ -146,6 +146,13 @@ export default function NavigationBar() {
           path: "/grading",
         }
       : null,
+    user?.status === "Teacher"
+      ? {
+          text: "Marking",
+          icon: <GradeIcon style={{ color: "white" }} />,
+          path: "/Marking",
+        }
+      : null,
     user?.status === "Admin"
       ? {
           text: "Manage",
