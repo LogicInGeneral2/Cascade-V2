@@ -80,7 +80,7 @@ export const CanvasProvider = ({ children }) => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF();
                 pdf.addImage(imgData, 'PNG', 0, 0);
-                pdf.save("edge_lamp_edited.pdf");
+                pdf.save("marked_submission.pdf");
                 setExporting(false);
             });
     }
@@ -181,43 +181,8 @@ export const CanvasProvider = ({ children }) => {
         console.log(exportPages)
     }
 
-    const onExport = () => {
-        setCurrPage(1);
-        setExporting(true);
-        const docToExport = document.querySelector("#toExport");
-        const pdf = new jsPDF("p", "mm", "a4");
-    
-        const exportPageToPDF = (pageNumber) => {
-            return new Promise((resolve) => {
-                html2canvas(docToExport, {
-                    scrollY: -window.scrollY,
-                    windowWidth: window.innerWidth,
-                    windowHeight: window.innerHeight,
-                }).then((canvas) => {
-                    const imgData = canvas.toDataURL('image/png');
-                    pdf.addImage(imgData, 'PNG', 0, 0);
-                    resolve();
-                });
-            });
-        };
-    
-        const exportPromises = [];
-        for (let i = 1; i <= numPages; i++) {
-            exportPromises.push(exportPageToPDF(i));
-            pdf.addPage();
-        }
-    
-        Promise.all(exportPromises).then(() => {
-            pdf.save("Edge_lamp_editor.pdf");
-            setExporting(false);
-            props.setOpen(false);
-        });
-    };
-
-
-
     return (
-        <funButtons.Provider value={{ canvas, setCanvas, addRect, addCircle, addText, addImage, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, onExport, isExporting, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
+        <funButtons.Provider value={{ canvas, setCanvas, addRect, addCircle, addText, addImage, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, isExporting, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
             {children}
         </funButtons.Provider>
     )

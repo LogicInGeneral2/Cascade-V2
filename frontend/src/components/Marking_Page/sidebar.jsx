@@ -104,21 +104,6 @@ export default function SideBar() {
                     </div>
                 </Tooltip>
 
-                <Tooltip title="Download Whole PDF">
-                    <div>
-                        <FiSave style={{ cursor: 'pointer', fontSize: '1.5rem' }} onClick={() => {
-                            contextValues.edits[contextValues.currPage] = contextValues.canvas.toObject();
-                            contextValues.onExport();
-                        }} />
-                    </div>
-                </Tooltip>
-
-                {contextValues.isExporting && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                    <CircularProgress />
-                </div>
-                )}
-
                 <Tooltip title="Border Color">
                     <div style={{
                         cursor: 'pointer',
