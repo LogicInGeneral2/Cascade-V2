@@ -17,9 +17,6 @@ export const useButtons = () => {
 
 
 export const CanvasProvider = ({ children }) => {
-    // file
-    const [theme, setTheme] = React.useState(false);
-    //  false -> light mode , true -> dark mode
     const [numPages, setNumPages] = React.useState(null);
     const [currPage, setCurrPage] = React.useState(1);
     const [selectedFile, setFile] = React.useState(null);
@@ -149,12 +146,11 @@ export const CanvasProvider = ({ children }) => {
         canvi.isDrawingMode = false
     }
 
-    // add highlight
     const addHighlight = canvi => {
         const rect = new fabric.Rect({
             height: 20,
             width: 400,
-            fill: color + '33',
+            fill: color + '99',
             cornerStyle: 'circle',
             editable: true
         });
@@ -163,13 +159,11 @@ export const CanvasProvider = ({ children }) => {
         canvi.isDrawingMode = false
     }
 
-    // add text
     const addText = canvi => {
         const text = new fabric.Textbox("Type Here ...", {
             editable: true,
         });
-        // text.set({ fill: color })
-        text.set({ fill: color, fontFamily: roboto.style.fontFamily })
+        text.set({ fill: color, fontFamily: 'Times New Roman'})
         canvi.add(text);
         canvi.renderAll();
         canvi.isDrawingMode = false
@@ -182,14 +176,48 @@ export const CanvasProvider = ({ children }) => {
         brush.strokeWidth = strokeWidth;
     }
 
-    // add functions here
     const exportPdf = () => {
         setExportPages((prev) => ([...prev, exportPage.current]));
         console.log(exportPages)
     }
 
+    const onExport = () => {
+        setCurrPage(1);
+        setExporting(true);
+        const docToExport = document.querySelector("#toExport");
+        const pdf = new jsPDF("p", "mm", "a4");
+    
+        const exportPageToPDF = (pageNumber) => {
+            return new Promise((resolve) => {
+                html2canvas(docToExport, {
+                    scrollY: -window.scrollY,
+                    windowWidth: window.innerWidth,
+                    windowHeight: window.innerHeight,
+                }).then((canvas) => {
+                    const imgData = canvas.toDataURL('image/png');
+                    pdf.addImage(imgData, 'PNG', 0, 0);
+                    resolve();
+                });
+            });
+        };
+    
+        const exportPromises = [];
+        for (let i = 1; i <= numPages; i++) {
+            exportPromises.push(exportPageToPDF(i));
+            pdf.addPage();
+        }
+    
+        Promise.all(exportPromises).then(() => {
+            pdf.save("Edge_lamp_editor.pdf");
+            setExporting(false);
+            props.setOpen(false);
+        });
+    };
+
+
+
     return (
-        <funButtons.Provider value={{ canvas, setCanvas, addRect, addCircle, addText, addImage, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, isExporting, theme, setTheme, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
+        <funButtons.Provider value={{ canvas, setCanvas, addRect, addCircle, addText, addImage, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, onExport, isExporting, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
             {children}
         </funButtons.Provider>
     )

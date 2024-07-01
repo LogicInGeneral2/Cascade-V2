@@ -7,9 +7,8 @@ import { fabric } from 'fabric';
 import { useButtons } from './canvas';
 import SideBar from './sidebar';
 import { MdClose } from 'react-icons/md';
-import { Icon } from './icon';
-import Loader from './loader';
-import { Box, Button, Typography, Container } from '@mui/material';
+import { Box, Button, Typography, Container, CircularProgress } from '@mui/material';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 export default function FileUpload() {
     const contextValues = useButtons();
@@ -62,62 +61,43 @@ export default function FileUpload() {
     return (
         <Box sx={{
             minHeight: '100vh',
-            ...(contextValues.theme && {
-                color: 'white',
-                backgroundColor: 'rgb(20,20,20)'
-            })
         }}>
             {contextValues.selectedFile && <SideBar />}
             {contextValues.selectedFile ? (
                 <Box sx={{
                     width: '100%',
                     py: 8,
-                    ...(contextValues.theme ? {
-                        color: 'white',
-                        backgroundColor: 'rgb(20,20,20)'
-                    } : {
-                        color: 'black',
-                        backgroundColor: 'white'
-                    })
+                    color: 'black',
+                    backgroundColor: 'white'
                 }}>
                     <Box sx={{
-                        p: 2,
+                        p: 1,
                         zIndex: 1200,
                         backgroundColor: 'red',
                         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                        borderRadius: 1,
+                        borderRadius: 2,
                         color: 'white',
                         position: 'fixed',
-                        top: 5,
-                        right: 5,
+                        top: 200,
+                        right: 40,
                         cursor: 'pointer'
                     }} onClick={() => contextValues.setFile(null)}>
-                        <MdClose sx={{ fontSize: '24px' }} />
+                        <MdClose size={25}/>
                     </Box>
 
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        ...(contextValues.theme ? {
-                            color: 'white',
-                            backgroundColor: 'rgb(20,20,20)'
-                        } : {
-                            color: 'black',
-                            backgroundColor: 'white'
-                        })
+                        color: 'black',
+                        backgroundColor: 'white'
                     }}>
                         <Box id="singlePageExport" sx={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            ...(contextValues.theme ? {
-                                color: 'white',
-                                backgroundColor: 'rgb(20,20,20)'
-                            } : {
-                                color: 'black',
-                                backgroundColor: 'white'
-                            })
+                            color: 'black',
+                            backgroundColor: 'white'
                         }}>
                             {docIsLoading && (
                                 <>
@@ -140,7 +120,7 @@ export default function FileUpload() {
                                         justifyContent: 'center',
                                         alignItems: 'center'
                                     }}>
-                                        <Loader color="#606060" size={120} strokeWidth="5" />
+                                        <CircularProgress color="primary" size={120} thickness={5} />
                                     </Box>
                                 </>
                             )}
@@ -160,14 +140,8 @@ export default function FileUpload() {
                                 </Box>
                                 <Box sx={{
                                     p: 4,
-                                    ...(contextValues.isExporting ? {} : contextValues.theme ? {
-                                        backgroundColor: 'rgb(25,25,25)',
-                                        boxShadow: '0px 0px 16px rgb(0,0,0)',
-                                        border: 'none'
-                                    } : {
-                                        boxShadow: '0px 0px 8px rgba(0,0,0,0.1)',
-                                        border: '1px solid #ccc'
-                                    })
+                                    boxShadow: '0px 0px 8px rgba(0,0,0,0.1)',
+                                    border: '1px solid #ccc'
                                 }}>
                                     <Page pageNumber={contextValues.currPage} id="docPage" width={595} height={842} />
                                 </Box>
@@ -192,7 +166,7 @@ export default function FileUpload() {
                         <Box sx={{
                             px: 4,
                             py: 2,
-                            backgroundColor: 'gray',
+                            backgroundColor: '#033f63',
                             borderRadius: 1,
                             color: 'white'
                         }}>
@@ -207,7 +181,7 @@ export default function FileUpload() {
                 </Box>
             ) : (
                 <Container sx={{
-                    minHeight: '100vh',
+                    minHeight: '50vh',
                     py: 8,
                     display: 'flex',
                     alignItems: 'center',
@@ -220,30 +194,25 @@ export default function FileUpload() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         borderRadius: 1,
-                        border: '2px dashed #ccc',
+                        border: '2px dashed #033f63',
                         p: 6
                     }}>
                         <Box sx={{
                             textAlign: 'center'
                         }}>
-                            <Icon />
+
+                            <NoteAddIcon sx={{ fontSize: '5rem', color: '#033f63', mb: 2 }} />
                             <Typography variant="body1" sx={{
                                 display: 'flex',
-                                ...(contextValues.theme ? {
-                                    color: 'gray.400'
-                                } : {
-                                    color: 'gray.600'
-                                })
+                                color: '#033f63',
                             }}>
                                 <label
                                     htmlFor="file-upload"
                                     sx={{
                                         cursor: 'pointer',
                                         textDecoration: 'underline',
-                                        color: 'indigo.500',
-                                        '&:hover': {
-                                            color: 'indigo.700'
-                                        }
+                                        color: '#033f63',
+
                                     }}
                                 >
                                     Upload a file

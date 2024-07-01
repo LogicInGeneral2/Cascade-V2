@@ -9,8 +9,7 @@ function Marking() {
         <h1 className="header">Marking</h1>
       </div>
       <Divider />
-      <br />
-      <br />
+
       <CanvasProvider>
         <FileUpload />
       </CanvasProvider>

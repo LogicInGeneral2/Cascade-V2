@@ -1,25 +1,21 @@
-import React from 'react'
-import { CgFormatText } from 'react-icons/cg'
-import { TbBookDownload } from 'react-icons/tb'
-import { BiHide, BiImageAdd, BiShow } from 'react-icons/bi'
-import { BsBorderWidth, BsCircle, BsSquare } from 'react-icons/bs'
-import { AiOutlineClear, AiOutlineDelete, AiOutlineHighlight } from 'react-icons/ai'
-import { HiPencil } from 'react-icons/hi'
-import { TfiNotepad } from 'react-icons/tfi'
-import { FiSave } from 'react-icons/fi'
+import React from 'react';
+import { CgFormatText } from 'react-icons/cg';
+import { TbBookDownload } from 'react-icons/tb';
+import { BiHide, BiImageAdd, BiShow } from 'react-icons/bi';
+import { BsBorderWidth, BsCircle, BsSquare } from 'react-icons/bs';
+import { AiOutlineClear, AiOutlineDelete, AiOutlineHighlight } from 'react-icons/ai';
+import { HiPencil } from 'react-icons/hi';
+import { FiSave } from 'react-icons/fi';
 import { useButtons } from './canvas';
-import { Popover, Slider } from '@mui/material'
+import { Popover, Slider, CircularProgress } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
-import { SketchPicker } from 'react-color'
-import ExportPopup from './export'
+import { SketchPicker } from 'react-color';
 
 export default function SideBar() {
-
     const contextValues = useButtons();
     const [openColor, setOpenColor] = React.useState(false);
     const [openBorderColor, setOpenBorderColor] = React.useState(false);
     const [openStroke, setOpenStroke] = React.useState(false);
-    const [openExporter, setOpenExporter] = React.useState(false);
 
     return (
         <div style={{
@@ -33,11 +29,6 @@ export default function SideBar() {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            ...(contextValues.theme && {
-                backgroundColor: 'rgb(25,25,25)',
-                color: 'white',
-                boxShadow: '0px 0px 8px rgb(0,0,0)',
-            })
         }}>
             <div style={{
                 display: 'flex',
@@ -49,25 +40,12 @@ export default function SideBar() {
                 textAlign: 'center',
                 minWidth: '8vw',
                 gap: '8px',
-                border: contextValues.theme ? '1px solid rgba(36,36,36,0.5)' : '1px solid rgba(0,0,0,0.1)',
-                backgroundColor: contextValues.theme ? 'rgb(25,25,25)' : 'white',
-                color: contextValues.theme ? 'white' : 'black',
+                border: '1px solid rgba(0,0,0,0.1)',
+                backgroundColor: 'white',
+                color: 'black',
                 borderRadius: '8px',
                 boxShadow: '0px 0px 8px rgba(0,0,0,0.1)',
-                ...(contextValues.theme && {
-                    border: '1px solid rgba(36,36,36,0.5)',
-                    backgroundColor: 'rgb(25,25,25)',
-                    color: 'white',
-                    boxShadow: '0px 0px 8px rgb(0,0,0)',
-                }),
             }}>
-                <ExportPopup className="text-[1.5rem] cursor-pointer" open={openExporter} setOpen={setOpenExporter} />
-
-                <Tooltip title="Sticky Notes">
-                    <div>
-                        <TfiNotepad style={{ cursor: 'pointer', fontSize: '1.6rem' }} onClick={() => contextValues.addNote(contextValues.canvas)} />
-                    </div>
-                </Tooltip>
 
                 <Tooltip title="Square">
                     <div>
@@ -130,10 +108,16 @@ export default function SideBar() {
                     <div>
                         <FiSave style={{ cursor: 'pointer', fontSize: '1.5rem' }} onClick={() => {
                             contextValues.edits[contextValues.currPage] = contextValues.canvas.toObject();
-                            setOpenExporter(true);
+                            contextValues.onExport();
                         }} />
                     </div>
                 </Tooltip>
+
+                {contextValues.isExporting && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                    <CircularProgress />
+                </div>
+                )}
 
                 <Tooltip title="Border Color">
                     <div style={{
@@ -209,10 +193,6 @@ export default function SideBar() {
                         justifyContent: 'center',
                         padding: '8px',
                         gap: '8px',
-                        ...(contextValues.theme && {
-                            backgroundColor: 'rgba(26,26,26)',
-                            color: 'white'
-                        })
                     }}>
                         <div>Stroke Width</div>
                         <Slider
@@ -234,5 +214,5 @@ export default function SideBar() {
                 </Tooltip>
             </div>
         </div>
-    )
+    );
 }
