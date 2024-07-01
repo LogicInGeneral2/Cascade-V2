@@ -15,7 +15,7 @@ import NotFound from "./components/NotFound_page/NotFound";
 import Home from "./components/Home_Page/Home_page";
 import Tasks_Page from "./components/Tasks_Page/Task_Page";
 import Grading_Page from "./components/Grading_Page/Grading_Page";
-import Marking from "./components/Grading_Page/marking";
+import Marking from "./components/Marking_Page/Marking_Page";
 
 function Logout() {
   localStorage.clear();

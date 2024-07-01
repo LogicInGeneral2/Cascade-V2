@@ -18,6 +18,7 @@ import GradeIcon from "@mui/icons-material/Grade";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import ListItemText from "@mui/material/ListItemText";
+import RateReviewIcon from "@mui/icons-material/RateReview";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -149,7 +150,7 @@ export default function NavigationBar() {
     user?.status === "Teacher"
       ? {
           text: "Marking",
-          icon: <GradeIcon style={{ color: "white" }} />,
+          icon: <RateReviewIcon style={{ color: "white" }} />,
           path: "/Marking",
         }
       : null,

@@ -224,9 +224,9 @@ function Grading_Page() {
     student: submission.student,
   }));
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openView, setOpenView] = React.useState(false);
+  const handleOpenView = () => setOpenView(true);
+  const handleCloseView = () => setOpenView(false);
 
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -282,35 +282,36 @@ function Grading_Page() {
           </Typography>
           <Divider sx={{ my: 2 }} />
 
-          <SubmissionDownloadButton fileId={submission.id} />
-
           <Box>
+            <SubmissionDownloadButton fileId={submission.id} />
+
             {submission.file_upload && (
               <>
                 <Button
-                  onClick={handleOpen}
+                  onClick={handleOpenView}
                   size="small"
-                  sx={{ mt: 2, mb: 1 }}
+                  sx={{ ml: 1, p: 1 }}
                   variant="outlined"
                 >
                   <CenterFocusWeakIcon sx={{ mr: 1 }} />
                   View File
                 </Button>
                 <Modal
-                  open={open}
-                  onClose={handleClose}
+                  open={openView}
+                  onClose={handleCloseView}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
                   <Box
                     sx={{
-                      position: "absolute" as "absolute",
+                      position: "absolute",
                       top: "50%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
-                      minwidth: 600,
+                      minWidth: 600,
                       bgcolor: "background.paper",
-                      border: "2px solid #000",
+                      border: "2px solid #033f63",
+                      borderRadius: "15px",
                       boxShadow: 24,
                       p: 4,
                     }}
