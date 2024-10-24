@@ -18,6 +18,10 @@ class SubTaskInline(admin.TabularInline):
 
 
 class TaskAdmin(admin.ModelAdmin):
+    list_dis = (
+        # try saja maa
+    )
+    
     list_display = (
         "task_id",
         "name",
