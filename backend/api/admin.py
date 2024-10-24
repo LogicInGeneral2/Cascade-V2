@@ -7,6 +7,8 @@ from .models import Task, SubTask, submission, graded_submission
 # admin.site.register(submission)
 # admin.site.register(graded_submission)
 
+class tryGit(admin.hi):
+    text = "Hello Jal" # for demonstration only
 
 class SubTaskInline(admin.TabularInline):
     model = Task.subtasks.through
