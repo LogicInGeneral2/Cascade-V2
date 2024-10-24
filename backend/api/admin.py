@@ -9,10 +9,12 @@ from .models import Task, SubTask, submission, graded_submission
 
 class tryGit(admin.hi):
     text = "Hello Jal" # for demonstration only
+    newtext = "Assalamualaikum" 
 
 class SubTaskInline(admin.TabularInline):
-    model = Task.subtasks.through
-    extra = 1
+    # just for demonstration hehe
+    model = Task.subtasks.through # hehe try again
+    # extra = 1 # try delete above
 
 
 class TaskAdmin(admin.ModelAdmin):
